@@ -47,7 +47,7 @@ type Place = {
 
 const days: { label: string; chipClass: string; places: Place[] }[] = [
   {
-    label: "Hari 1 — Jumat, 3 Oktober",
+    label: "Hari 1 — Sabtu, 3 Oktober",
     chipClass: "bg-secondary text-secondary-foreground",
     places: [
       {
@@ -74,7 +74,7 @@ const days: { label: string; chipClass: string; places: Place[] }[] = [
     ],
   },
   {
-    label: "Hari 2 — Sabtu, 4 Oktober",
+    label: "Hari 2 — Minggu, 4 Oktober",
     chipClass: "bg-accent text-accent-foreground",
     places: [
       {
