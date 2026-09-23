@@ -1,0 +1,203 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system — "Ngedate di Bekasi"
+ * Palet: terracotta + sage green + cream (romantis, hangat, playful)
+ * Fonts: Gochi Hand (judul, handwritten playful) + Plus Jakarta Sans (body)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --font-display: "Gochi Hand", cursive;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-terracotta: var(--terracotta);
+  --color-terracotta-deep: var(--terracotta-deep);
+  --color-sage: var(--sage);
+  --color-sage-deep: var(--sage-deep);
+  --color-sage-soft: var(--sage-soft);
+  --color-peach: var(--peach);
+  --color-peach-soft: var(--peach-soft);
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+}
+
+:root {
+  --radius: 1.25rem;
+  --background: oklch(0.968 0.022 85);        /* cream hangat */
+  --foreground: oklch(0.36 0.055 45);         /* cokelat hangat */
+  --card: oklch(0.985 0.012 90);              /* cream terang */
+  --card-foreground: oklch(0.36 0.055 45);
+  --popover: oklch(0.985 0.012 90);
+  --popover-foreground: oklch(0.36 0.055 45);
+  --primary: oklch(0.615 0.135 40);           /* terracotta */
+  --primary-foreground: oklch(0.985 0.015 85);
+  --secondary: oklch(0.885 0.045 130);        /* sage lembut */
+  --secondary-foreground: oklch(0.42 0.065 145);
+  --muted: oklch(0.925 0.03 90);
+  --muted-foreground: oklch(0.52 0.045 50);
+  --accent: oklch(0.885 0.065 60);            /* peach */
+  --accent-foreground: oklch(0.42 0.075 40);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0.015 85);
+  --border: oklch(0.885 0.035 70);
+  --input: oklch(0.885 0.035 70);
+  --ring: oklch(0.615 0.135 40);
+
+  /* Token tema tambahan */
+  --terracotta: oklch(0.615 0.135 40);
+  --terracotta-deep: oklch(0.5 0.125 38);
+  --sage: oklch(0.68 0.075 145);
+  --sage-deep: oklch(0.5 0.07 148);
+  --sage-soft: oklch(0.885 0.045 130);
+  --peach: oklch(0.8 0.09 55);
+  --peach-soft: oklch(0.925 0.045 65);
+  --cream: oklch(0.968 0.022 85);
+  --cream-deep: oklch(0.93 0.035 85);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ---------- Tekstur & dekorasi ---------- */
+
+/* Titik-titik halus di latar, seperti kertas scrapbook */
+@utility bg-dot-grid {
+  background-image: radial-gradient(
+    color-mix(in oklab, var(--terracotta) 14%, transparent) 1.2px,
+    transparent 1.2px
+  );
+  background-size: 22px 22px;
+}
+
+/* Garis putus-putus vertikal untuk timeline */
+@utility timeline-line {
+  background-image: linear-gradient(
+    to bottom,
+    var(--sage) 45%,
+    transparent 45%
+  );
+  background-size: 2.5px 14px;
+  background-repeat: repeat-y;
+}
+
+/* Kartu polaroid: bingkai putih + bayangan lembut */
+@utility polaroid {
+  background: var(--card);
+  padding: 0.5rem 0.5rem 0.75rem;
+  box-shadow:
+    0 1px 2px color-mix(in oklab, var(--foreground) 8%, transparent),
+    0 10px 28px -12px color-mix(in oklab, var(--terracotta-deep) 28%, transparent);
+}
+
+/* Animasi float lembut untuk doodle */
+@keyframes doodle-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--tilt, 0deg));
+  }
+  50% {
+    transform: translateY(-10px) rotate(var(--tilt, 0deg));
+  }
+}
+
+@utility doodle-float {
+  animation: doodle-float 5s ease-in-out infinite;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility fade-up {
+  animation: fade-up 0.7s ease-out both;
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+@utility hover-wiggle {
+  &:hover {
+    animation: wiggle 0.4s ease-in-out;
+  }
+}
+
+@keyframes love-rain {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.45) rotate(0deg);
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift, 0px), 180px, 0) scale(1.15) rotate(var(--spin, 90deg));
+  }
+}
+
+.love-rain-particle {
+  position: absolute;
+  display: inline-block;
+  line-height: 1;
+  filter: drop-shadow(0 6px 12px rgba(244, 63, 94, 0.18));
+  animation-name: love-rain;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.25, 1);
+  animation-fill-mode: forwards;
+}
